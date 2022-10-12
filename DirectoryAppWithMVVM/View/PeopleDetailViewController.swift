@@ -22,6 +22,7 @@ class PeopleDetailViewController: UIViewController {
         label.numberOfLines = 0
         label.isAccessibilityElement = true
         label.accessibilityHint = "Person name"
+        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         return label
     }()
     lazy var emailLabel: UILabel = {
@@ -30,6 +31,7 @@ class PeopleDetailViewController: UIViewController {
         label.numberOfLines = 0
         label.isAccessibilityElement = true
         label.accessibilityHint = "Person email"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
         return label
     }()
     lazy var jobTitle: UILabel = {
@@ -38,6 +40,7 @@ class PeopleDetailViewController: UIViewController {
         label.numberOfLines = 0
         label.isAccessibilityElement = true
         label.accessibilityHint = "Job title"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
         return label
     }()
     lazy var favouriteColorLabel: UILabel = {
@@ -46,6 +49,7 @@ class PeopleDetailViewController: UIViewController {
         label.numberOfLines = 0
         label.isAccessibilityElement = true
         label.accessibilityHint = "Favourite color"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
         return label
     }()
     init(vm: PeopleViewModelType, index: IndexPath) {
@@ -54,11 +58,11 @@ class PeopleDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         nameLabel.text = "\(vm.getPersonName(for: index.row) ?? "Person name")"
         nameLabel.accessibilityValue = "\(peopleVM.getPersonName(for: index.row) ?? "")"  // For accessibility
-        emailLabel.text = "\(vm.getPersonEmail(for: index.row) ?? "Person email")"
+        emailLabel.text = "Email: \(vm.getPersonEmail(for: index.row) ?? "Person email")"
         emailLabel.accessibilityValue = "\(peopleVM.getPersonEmail(for: index.row) ?? "")"   // For accessibility
-        jobTitle.text = "\(vm.getPersonDesignation(for: index.row) ?? "Person designation")"
+        jobTitle.text = "Designation: \(vm.getPersonDesignation(for: index.row) ?? "Person designation")"
         jobTitle.accessibilityValue = "\(peopleVM.getPersonDesignation(for: index.row) ?? "")"   // For accessibility
-        favouriteColorLabel.text = "\(vm.getPersonEmail(for: index.row) ?? "Person Email")"
+        favouriteColorLabel.text = "Favourite Color: \(vm.getPersonFavColor(for: index.row) ?? "Person favourite color")"
         favouriteColorLabel.accessibilityValue = "\(peopleVM.getPersonFavColor(for: index.row) ?? "")"   // For accessibility
         peopleVM.getPersonImage(for: index.row) { imageData in
             guard let imageData = imageData else { return }
@@ -86,16 +90,12 @@ class PeopleDetailViewController: UIViewController {
         avatarImage.heightAnchor.constraint(equalToConstant: 200).isActive = true
         avatarImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
         nameLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 20).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        nameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         emailLabel.topAnchor.constraint(equalTo: nameLabel.safeAreaLayoutGuide.bottomAnchor, constant: 8).isActive = true
-        emailLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        emailLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        emailLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         jobTitle.topAnchor.constraint(equalTo: emailLabel.safeAreaLayoutGuide.bottomAnchor, constant: 8).isActive = true
-        jobTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        jobTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        jobTitle.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         favouriteColorLabel.topAnchor.constraint(equalTo: jobTitle.safeAreaLayoutGuide.bottomAnchor, constant: 8).isActive = true
-        favouriteColorLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        favouriteColorLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        favouriteColorLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
 }
